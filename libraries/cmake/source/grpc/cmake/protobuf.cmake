@@ -11,20 +11,25 @@ function(protobufMain)
     # libprotobuf_lite
     ${library_root}/src/google/protobuf/any_lite.cc
     ${library_root}/src/google/protobuf/arena.cc
+    ${library_root}/src/google/protobuf/arenastring.cc
     ${library_root}/src/google/protobuf/extension_set.cc
     #${library_root}/src/google/protobuf/generated_enum_util.cc
     ${library_root}/src/google/protobuf/generated_message_table_driven_lite.cc
+    ${library_root}/src/google/protobuf/generated_message_tctable_lite.cc
     ${library_root}/src/google/protobuf/generated_message_util.cc
     ${library_root}/src/google/protobuf/implicit_weak_message.cc
+    ${library_root}/src/google/protobuf/inlined_string_field.cc
     ${library_root}/src/google/protobuf/io/coded_stream.cc
     ${library_root}/src/google/protobuf/io/io_win32.cc
     ${library_root}/src/google/protobuf/io/strtod.cc
     ${library_root}/src/google/protobuf/io/zero_copy_stream.cc
     ${library_root}/src/google/protobuf/io/zero_copy_stream_impl.cc
     ${library_root}/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+    ${library_root}/src/google/protobuf/map.cc
     ${library_root}/src/google/protobuf/message_lite.cc
     ${library_root}/src/google/protobuf/parse_context.cc
     ${library_root}/src/google/protobuf/repeated_field.cc
+    ${library_root}/src/google/protobuf/repeated_ptr_field.cc
     ${library_root}/src/google/protobuf/stubs/bytestream.cc
     ${library_root}/src/google/protobuf/stubs/common.cc
     ${library_root}/src/google/protobuf/stubs/int128.cc
@@ -36,6 +41,8 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/stubs/strutil.cc
     ${library_root}/src/google/protobuf/stubs/time.cc
     ${library_root}/src/google/protobuf/wire_format_lite.cc
+    ${library_root}/src/google/protobuf/any_lite.cc
+    ${library_root}/src/google/protobuf/arena.cc
 
     # libprotobuf
     ${library_root}/src/google/protobuf/any.cc
@@ -51,8 +58,10 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/empty.pb.cc
     ${library_root}/src/google/protobuf/extension_set_heavy.cc
     ${library_root}/src/google/protobuf/field_mask.pb.cc
+    ${library_root}/src/google/protobuf/generated_message_bases.cc
     ${library_root}/src/google/protobuf/generated_message_reflection.cc
     ${library_root}/src/google/protobuf/generated_message_table_driven.cc
+    ${library_root}/src/google/protobuf/generated_message_tctable_full.cc
     ${library_root}/src/google/protobuf/io/gzip_stream.cc
     ${library_root}/src/google/protobuf/io/printer.cc
     ${library_root}/src/google/protobuf/io/tokenizer.cc
@@ -62,7 +71,6 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/service.cc
     ${library_root}/src/google/protobuf/source_context.pb.cc
     ${library_root}/src/google/protobuf/struct.pb.cc
-    ${library_root}/src/google/protobuf/stubs/mathlimits.cc
     ${library_root}/src/google/protobuf/stubs/substitute.cc
     ${library_root}/src/google/protobuf/text_format.cc
     ${library_root}/src/google/protobuf/timestamp.pb.cc
@@ -83,7 +91,6 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/util/internal/protostream_objectsource.cc
     ${library_root}/src/google/protobuf/util/internal/protostream_objectwriter.cc
     ${library_root}/src/google/protobuf/util/internal/type_info.cc
-    ${library_root}/src/google/protobuf/util/internal/type_info_test_helper.cc
     ${library_root}/src/google/protobuf/util/internal/utility.cc
     ${library_root}/src/google/protobuf/util/json_util.cc
     ${library_root}/src/google/protobuf/util/message_differencer.cc
@@ -91,7 +98,7 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/util/type_resolver_util.cc
     ${library_root}/src/google/protobuf/wire_format.cc
     ${library_root}/src/google/protobuf/wrappers.pb.cc
-
+        
     # libprotoc
     ${library_root}/src/google/protobuf/compiler/code_generator.cc
     ${library_root}/src/google/protobuf/compiler/command_line_interface.cc
@@ -106,6 +113,7 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/compiler/cpp/cpp_message.cc
     ${library_root}/src/google/protobuf/compiler/cpp/cpp_message_field.cc
     ${library_root}/src/google/protobuf/compiler/cpp/cpp_padding_optimizer.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/cpp_parse_function_generator.cc
     ${library_root}/src/google/protobuf/compiler/cpp/cpp_primitive_field.cc
     ${library_root}/src/google/protobuf/compiler/cpp/cpp_service.cc
     ${library_root}/src/google/protobuf/compiler/cpp/cpp_string_field.cc
@@ -138,6 +146,7 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/compiler/java/java_generator.cc
     ${library_root}/src/google/protobuf/compiler/java/java_generator_factory.cc
     ${library_root}/src/google/protobuf/compiler/java/java_helpers.cc
+    ${library_root}/src/google/protobuf/compiler/java/java_kotlin_generator.cc
     ${library_root}/src/google/protobuf/compiler/java/java_map_field.cc
     ${library_root}/src/google/protobuf/compiler/java/java_map_field_lite.cc
     ${library_root}/src/google/protobuf/compiler/java/java_message.cc

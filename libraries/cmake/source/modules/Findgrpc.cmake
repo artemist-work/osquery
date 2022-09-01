@@ -15,11 +15,11 @@ importSourceSubmodule(
   SUBMODULES
     "src"
     "src/third_party/abseil-cpp"
-    "src/third_party/udpa"
 
   SHALLOW_SUBMODULES
     "src/third_party/cares/cares"
     "src/third_party/protobuf"
+    "src/third_party/re2"
 
   PATCH
     "src"
