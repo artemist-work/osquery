@@ -12,9 +12,9 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/any_lite.cc
     ${library_root}/src/google/protobuf/arena.cc
     ${library_root}/src/google/protobuf/arenastring.cc
+    ${library_root}/src/google/protobuf/arenaz_sampler.cc
     ${library_root}/src/google/protobuf/extension_set.cc
     #${library_root}/src/google/protobuf/generated_enum_util.cc
-    ${library_root}/src/google/protobuf/generated_message_table_driven_lite.cc
     ${library_root}/src/google/protobuf/generated_message_tctable_lite.cc
     ${library_root}/src/google/protobuf/generated_message_util.cc
     ${library_root}/src/google/protobuf/implicit_weak_message.cc
@@ -60,7 +60,6 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/field_mask.pb.cc
     ${library_root}/src/google/protobuf/generated_message_bases.cc
     ${library_root}/src/google/protobuf/generated_message_reflection.cc
-    ${library_root}/src/google/protobuf/generated_message_table_driven.cc
     ${library_root}/src/google/protobuf/generated_message_tctable_full.cc
     ${library_root}/src/google/protobuf/io/gzip_stream.cc
     ${library_root}/src/google/protobuf/io/printer.cc
@@ -102,21 +101,21 @@ function(protobufMain)
     # libprotoc
     ${library_root}/src/google/protobuf/compiler/code_generator.cc
     ${library_root}/src/google/protobuf/compiler/command_line_interface.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_enum.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_enum_field.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_extension.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_field.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_file.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_generator.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_helpers.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_map_field.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_message.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_message_field.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_padding_optimizer.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_parse_function_generator.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_primitive_field.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_service.cc
-    ${library_root}/src/google/protobuf/compiler/cpp/cpp_string_field.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/enum.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/enum_field.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/extension.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/field.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/file.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/generator.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/helpers.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/map_field.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/message.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/message_field.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/padding_optimizer.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/parse_function_generator.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/primitive_field.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/service.cc
+    ${library_root}/src/google/protobuf/compiler/cpp/string_field.cc
     ${library_root}/src/google/protobuf/compiler/csharp/csharp_doc_comment.cc
     ${library_root}/src/google/protobuf/compiler/csharp/csharp_enum.cc
     ${library_root}/src/google/protobuf/compiler/csharp/csharp_enum_field.cc
@@ -133,37 +132,35 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/compiler/csharp/csharp_repeated_primitive_field.cc
     ${library_root}/src/google/protobuf/compiler/csharp/csharp_source_generator_base.cc
     ${library_root}/src/google/protobuf/compiler/csharp/csharp_wrapper_field.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_context.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_doc_comment.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_enum.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_enum_field.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_enum_field_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_enum_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_extension.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_extension_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_field.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_file.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_generator.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_generator_factory.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_helpers.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_kotlin_generator.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_map_field.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_map_field_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_message.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_message_builder.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_message_builder_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_message_field.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_message_field_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_message_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_name_resolver.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_primitive_field.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_primitive_field_lite.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_service.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_shared_code_generator.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_string_field.cc
-    ${library_root}/src/google/protobuf/compiler/java/java_string_field_lite.cc
-    ${library_root}/src/google/protobuf/compiler/js/js_generator.cc
-    ${library_root}/src/google/protobuf/compiler/js/well_known_types_embed.cc
+    ${library_root}/src/google/protobuf/compiler/java/context.cc
+    ${library_root}/src/google/protobuf/compiler/java/doc_comment.cc
+    ${library_root}/src/google/protobuf/compiler/java/enum.cc
+    ${library_root}/src/google/protobuf/compiler/java/enum_field.cc
+    ${library_root}/src/google/protobuf/compiler/java/enum_field_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/enum_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/extension.cc
+    ${library_root}/src/google/protobuf/compiler/java/extension_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/field.cc
+    ${library_root}/src/google/protobuf/compiler/java/file.cc
+    ${library_root}/src/google/protobuf/compiler/java/generator.cc
+    ${library_root}/src/google/protobuf/compiler/java/generator_factory.cc
+    ${library_root}/src/google/protobuf/compiler/java/helpers.cc
+    ${library_root}/src/google/protobuf/compiler/java/kotlin_generator.cc
+    ${library_root}/src/google/protobuf/compiler/java/map_field.cc
+    ${library_root}/src/google/protobuf/compiler/java/map_field_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/message.cc
+    ${library_root}/src/google/protobuf/compiler/java/message_builder.cc
+    ${library_root}/src/google/protobuf/compiler/java/message_builder_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/message_field.cc
+    ${library_root}/src/google/protobuf/compiler/java/message_field_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/message_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/name_resolver.cc
+    ${library_root}/src/google/protobuf/compiler/java/primitive_field.cc
+    ${library_root}/src/google/protobuf/compiler/java/primitive_field_lite.cc
+    ${library_root}/src/google/protobuf/compiler/java/service.cc
+    ${library_root}/src/google/protobuf/compiler/java/shared_code_generator.cc
+    ${library_root}/src/google/protobuf/compiler/java/string_field.cc
+    ${library_root}/src/google/protobuf/compiler/java/string_field_lite.cc
     ${library_root}/src/google/protobuf/compiler/objectivec/objectivec_enum.cc
     ${library_root}/src/google/protobuf/compiler/objectivec/objectivec_enum_field.cc
     ${library_root}/src/google/protobuf/compiler/objectivec/objectivec_extension.cc
@@ -179,7 +176,9 @@ function(protobufMain)
     ${library_root}/src/google/protobuf/compiler/php/php_generator.cc
     ${library_root}/src/google/protobuf/compiler/plugin.cc
     ${library_root}/src/google/protobuf/compiler/plugin.pb.cc
-    ${library_root}/src/google/protobuf/compiler/python/python_generator.cc
+    ${library_root}/src/google/protobuf/compiler/python/generator.cc
+    ${library_root}/src/google/protobuf/compiler/python/helpers.cc
+    ${library_root}/src/google/protobuf/compiler/python/pyi_generator.cc
     ${library_root}/src/google/protobuf/compiler/ruby/ruby_generator.cc
     ${library_root}/src/google/protobuf/compiler/subprocess.cc
     ${library_root}/src/google/protobuf/compiler/zip_writer.cc

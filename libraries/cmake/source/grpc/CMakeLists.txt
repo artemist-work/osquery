@@ -26,6 +26,7 @@ function(grpcMain)
   set(library_root "${OSQUERY_grpc_ROOT_DIR}")
   set(PROTOC_PATH "${CMAKE_CURRENT_BINARY_DIR}" CACHE STRING "" FORCE)
 
+  set(CMAKE_CXX_STANDARD 17)
   add_subdirectory("${library_root}" "${CMAKE_CURRENT_BINARY_DIR}/submodule" EXCLUDE_FROM_ALL)
 
   set(cares_include_directory
