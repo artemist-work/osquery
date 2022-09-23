@@ -154,3 +154,6 @@
 [submodule "libraries/cmake/source/grpc/src"]
 	path = libraries/cmake/source/grpc/src
 	url = https://github.com/grpc/grpc.git
+[submodule "osquery/events/containerd/containerd"]
+	path = osquery/events/containerd/containerd
+	url = https://github.com/containerd/containerd

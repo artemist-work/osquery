@@ -22,16 +22,18 @@ function(generateOsqueryEvents)
       COMMAND cmake -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/containerd/osquery/events/containerd
     )
 
+    initializeGitSubmodule(containerd TRUE FALSE)
+
     set(containerd_proto_files
-      events
-      container
-      runc
-      content
-      image
-      namespace
-      snapshot
-      task
-      mount
+     api/services/events/v1/events
+     api/events/container
+     api/events/content
+     api/events/image
+     api/events/namespace
+     api/events/snapshot
+     api/events/task
+     api/types/mount
+      runtime/linux/runctypes/runc
     )
 
     foreach(proto_file_name ${containerd_proto_files})
@@ -39,29 +41,29 @@ function(generateOsqueryEvents)
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/containerd/${proto_file_name}.pb.h
                ${CMAKE_CURRENT_BINARY_DIR}/containerd/${proto_file_name}.pb.cc
                ${CMAKE_CURRENT_BINARY_DIR}/containerd/osquery/events/containerd/${proto_file_name}.pb.h
-        COMMAND ${PROTOC_PATH}/protoc -I ${CMAKE_CURRENT_SOURCE_DIR}/containerd/proto
+        COMMAND ${PROTOC_PATH}/protoc -I ${CMAKE_CURRENT_SOURCE_DIR}/containerd/containerd/api/events
                 -I ${CMAKE_SOURCE_DIR}/libraries/cmake/source/grpc/src/third_party/protobuf/src --cpp_out=${CMAKE_CURRENT_BINARY_DIR}/containerd
-                ${CMAKE_CURRENT_SOURCE_DIR}/containerd/proto/${proto_file_name}.proto
+                ${CMAKE_CURRENT_SOURCE_DIR}/containerd/containerd/${proto_file_name}.proto
         COMMAND cmake -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/containerd/${proto_file_name}.pb.h
                 ${CMAKE_CURRENT_BINARY_DIR}/containerd/osquery/events/containerd/${proto_file_name}.pb.h
         DEPENDS protobuf::protoc
         DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/containerd/osquery/events/containerd
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/containerd/proto/${proto_file_name}.proto
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/containerd/containerd/${proto_file_name}.proto
       )
 
       add_custom_command(
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/containerd/${proto_file_name}.grpc.pb.h
                ${CMAKE_CURRENT_BINARY_DIR}/containerd/${proto_file_name}.grpc.pb.cc
                ${CMAKE_CURRENT_BINARY_DIR}/containerd/osquery/events/containerd/${proto_file_name}.grpc.pb.h
-        COMMAND ${PROTOC_PATH}/protoc -I ${CMAKE_CURRENT_SOURCE_DIR}/containerd/proto
+        COMMAND ${PROTOC_PATH}/protoc -I ${CMAKE_CURRENT_SOURCE_DIR}/containerd/containerd/api/events
                 -I ${CMAKE_SOURCE_DIR}/libraries/cmake/source/grpc/src/third_party/protobuf/src --grpc_out=${CMAKE_CURRENT_BINARY_DIR}/containerd
-                --plugin=protoc-gen-grpc=${PROTOC_PATH}/grpc_cpp_plugin  ${CMAKE_CURRENT_SOURCE_DIR}/containerd/proto/${proto_file_name}.proto
+                --plugin=protoc-gen-grpc=${PROTOC_PATH}/grpc_cpp_plugin  ${CMAKE_CURRENT_SOURCE_DIR}/containerd/containerd/${proto_file_name}.proto
         COMMAND cmake -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/containerd/${proto_file_name}.grpc.pb.h
                 ${CMAKE_CURRENT_BINARY_DIR}/containerd/osquery/events/containerd/${proto_file_name}.grpc.pb.h
         DEPENDS protobuf::protoc
         DEPENDS grpc_cpp_plugin
         DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/containerd/osquery/events/containerd
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/containerd/proto/${proto_file_name}.proto
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/containerd/containerd/${proto_file_name}.proto
         DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/containerd/${proto_file_name}.pb.h
       )
     endforeach()

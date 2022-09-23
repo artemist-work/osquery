@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package containerd.events;
-
-message ContentDelete {
-	string digest = 1;
-}
