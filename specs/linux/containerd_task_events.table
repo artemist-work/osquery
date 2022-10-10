@@ -2,7 +2,6 @@ table_name("containerd_task_events")
 description("Track containerd task events.")
 schema([
     Column("time", BIGINT, "When the event has been fired by the event framework"),
-    Column("timestamp", TEXT, "Time of when the event happened"),
     Column("namespace", TEXT, "Namespace where the container is in"),
     Column("topic", TEXT, "Specific type of the event"),
     Column("container_id", TEXT, "Container ID"),

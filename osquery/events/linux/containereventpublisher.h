@@ -34,7 +34,7 @@ class BaseContainerEvent {
   };
 
   BaseContainerEvent(Type type,
-                     const std::string& timestamp,
+                     const EventTime timestamp,
                      const std::string& namespace_name,
                      const std::string& topic)
       : type_(type),
@@ -43,7 +43,7 @@ class BaseContainerEvent {
         topic_(topic) {}
 
   Type type_;
-  std::string timestamp_;
+  EventTime timestamp_;
   std::string namespace_name_;
   std::string topic_;
 
@@ -59,7 +59,7 @@ class ContainerEvent final : public BaseContainerEvent {
     bool systemd_cgroup_;
   };
   ContainerEvent() = delete;
-  ContainerEvent(const std::string& timestamp,
+  ContainerEvent(const EventTime timestamp,
                  const std::string& namespace_name,
                  const std::string& topic,
                  const std::string& container_id,
@@ -84,7 +84,7 @@ class ContainerEvent final : public BaseContainerEvent {
 
 class ContentEvent final : public BaseContainerEvent {
  public:
-  ContentEvent(const std::string& timestamp,
+  ContentEvent(const EventTime timestamp,
                const std::string& namespace_name,
                const std::string& topic,
                const std::string& digest)
@@ -96,7 +96,7 @@ class ContentEvent final : public BaseContainerEvent {
 
 class ImageEvent final : public BaseContainerEvent {
  public:
-  ImageEvent(const std::string& timestamp,
+  ImageEvent(const EventTime timestamp,
              const std::string& namespace_name,
              const std::string& topic,
              const std::string& name,
@@ -111,7 +111,7 @@ class ImageEvent final : public BaseContainerEvent {
 
 class NamespaceEvent final : public BaseContainerEvent {
  public:
-  NamespaceEvent(const std::string& timestamp,
+  NamespaceEvent(const EventTime timestamp,
                  const std::string& namespace_name,
                  const std::string& topic,
                  const std::string& name,
@@ -127,7 +127,7 @@ class NamespaceEvent final : public BaseContainerEvent {
 
 class SnapshotEvent final : public BaseContainerEvent {
  public:
-  SnapshotEvent(const std::string& timestamp,
+  SnapshotEvent(const EventTime timestamp,
                 const std::string& namespace_name,
                 const std::string& topic,
                 const std::string& key,
@@ -160,7 +160,7 @@ class TaskEvent final : public BaseContainerEvent {
     bool terminal_{false};
   };
 
-  TaskEvent(const std::string& timestamp,
+  TaskEvent(const EventTime timestamp,
             const std::string& namespace_name,
             const std::string& topic,
             const std::string& container_id,

@@ -69,7 +69,6 @@ Status ContainerdContainerEventSubscriber::Callback(const ECRef& ec,
       dynamic_cast<const ContainerEvent&>(*ec->container_event);
 
   r["container_id"] = container_event.container_id_;
-  r["timestamp"] = container_event.timestamp_;
   r["namespace"] = container_event.namespace_name_;
   r["topic"] = container_event.topic_;
   r["image_name"] = container_event.image_name_;
@@ -83,7 +82,8 @@ Status ContainerdContainerEventSubscriber::Callback(const ECRef& ec,
 
   r["labels"] = labels;
 
-  add(r);
+  std::vector<Row> batch = {r};
+  addBatch(batch, container_event.timestamp_);
 
   return Status::success();
 }

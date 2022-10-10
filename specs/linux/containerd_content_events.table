@@ -2,7 +2,6 @@ table_name("containerd_content_events")
 description("Track containerd content events.")
 schema([
     Column("time", BIGINT, "When the event has been fired by the event framework"),
-    Column("timestamp", TEXT, "Time of when the event happened"),
     Column("namespace", TEXT, "Namespace where the container is in"),
     Column("topic", TEXT, "Specific type of the event"),
     Column("digest", TEXT, "Digest of the content")

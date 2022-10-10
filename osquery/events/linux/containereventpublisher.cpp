@@ -72,7 +72,7 @@ auto createContainerEvent(
     const containerd::services::events::v1::Envelope& event,
     ConstructorArgs&&... args) {
   return std::make_unique<T>(
-      google::protobuf::util::TimeUtil::ToString(event.timestamp()),
+      event.timestamp().seconds(),
       event.namespace_(),
       event.topic(),
       std::forward<ConstructorArgs>(args)...);

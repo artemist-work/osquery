@@ -3,7 +3,6 @@ description("Track containerd container events.")
 schema([
     Column("container_id", TEXT, "Container ID"),
     Column("time", BIGINT, "When the event has been fired by the event framework"),
-    Column("timestamp", TEXT, "Time of when the event happened"),
     Column("namespace", TEXT, "Namespace where the container is in"),
     Column("topic", TEXT, "Specific type of the event"),
     Column("image_name", TEXT, "Image name"),
